@@ -1,0 +1,3 @@
+# Diretores aprovam pagamento, não o crédito no recorte 1
+
+O ok dos dois diretores permanece no **pagamento** (boleto/banco), depois da confirmação no provedor, sobre um consolidado de pagamento identificável no e-mail — não uma planilha solta. O financeiro libera o **crédito** das linhas **conferidas** (D20) e executa o Flash sem esperar esse ok. **A conferir** não entra no pedido. A alternativa (inverter: dois oks antes de confirmar o pedido) apertaria os cinco dias úteis de corte da antecipação e contradiz o objeto atual da aprovação (fato F26). Recusa de diretor não desfaz pedido confirmado. Diretor não opera linha a linha.

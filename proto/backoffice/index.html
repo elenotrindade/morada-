@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Morada · Benefícios</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <!--
+    Protótipo throwaway. P-codes só em comentário de seed.
+    Valores em R$ não vêm da entrevista. UI mostra semente da planilha (PREMISSA DE PROTÓTIPO — docs/proto-semente.md); "a informar" só em cadastro incompleto.
+    Lista: uma linha por colaborador **ativo a conferir** (ainda não na parcial Flash desta competência). CLT: coluna Benefício / escolha = ônibus XOR auxílio gasolina (ambos Flash);
+    subtexto Multibenefícios padrão sem cifra. Valor da lista = soma Multibenefícios + escolha (a informar se faltar peça).
+    Discriminado só no Detalhe. PJ: Flexível (sem subtexto).
+    Sem chips no benefício. Nomes Flash (P07) não entram na lista nem no detalhe.
+    Barra de lote só com seleção ≥ 1; um botão: Marcar como conferidos (abre o resumo Flash). Confirmar envio dispara o provedor. Sem Omie na barra. D22/D26: parcial caminha junta; Banco lista todas.
+
+    Captura (servir proto/backoffice em 127.0.0.1:8765). ?demo= pinta ciclo.parciais + passo; cifras = proto-semente.
+    http://127.0.0.1:8765/index.html?demo=lista#/financeiro/beneficios
+    http://127.0.0.1:8765/index.html?demo=flash#/financeiro/beneficios/flash
+    http://127.0.0.1:8765/index.html?demo=boleto#/financeiro/beneficios/retorno
+    http://127.0.0.1:8765/index.html?demo=omie#/financeiro/beneficios/omie
+    http://127.0.0.1:8765/index.html?demo=diretores#/financeiro/beneficios/diretores
+    http://127.0.0.1:8765/index.html?demo=banco#/financeiro/beneficios/banco
+    Extra: demo=boleto-falha | demo=boleto-espera. Detalhe: na lista, Detalhes em Ana Souza.
+  -->
+  <div class="app" id="app"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

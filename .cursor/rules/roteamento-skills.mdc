@@ -1,0 +1,14 @@
+---
+description: Roteia PRD/SRD, UI de operação e otimização Flash/calendário para as skills do repositório.
+alwaysApply: true
+---
+
+# Roteamento de skills
+
+Ler a skill **antes** de executar. Não esperar o glob.
+
+| Pedido | Skill |
+|--------|--------|
+| PRD, SRD, proposta, contrato, discovery etiquetado | `.cursor/skills/product-engineer/SKILL.md` |
+| Tela, layout, CSS, proto, filtros, bulk, chrome PT-BR | `.cursor/skills/ui-operacao/SKILL.md` |
+| Tempo do financeiro, Flash, Omie, calendário, planilha, dias úteis, recorte de integração | `.cursor/skills/otimizacao-operacional/SKILL.md` |

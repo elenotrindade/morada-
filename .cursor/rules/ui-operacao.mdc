@@ -1,0 +1,13 @@
+---
+description: Roteia tela, layout e proto do backoffice para a skill ui-operacao.
+globs: proto/backoffice/**/*
+alwaysApply: false
+---
+
+# UI da operação — roteamento
+
+Trabalho de **tela**, layout, CSS, proto, filtros, bulk ou copy visível segue a skill `ui-operacao`.
+
+Ler `.cursor/skills/ui-operacao/SKILL.md` (densidade: `reference.md`).
+
+Contrato de comportamento continua em `product-engineer`. Integração Flash/Omie/calendário em `otimizacao-operacional`.

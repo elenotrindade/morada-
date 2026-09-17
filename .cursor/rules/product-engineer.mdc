@@ -1,0 +1,17 @@
+---
+description: Roteia PRD, SRD e proposta de Product Engineer para a skill product-engineer.
+globs: docs/prd/**/*.md,docs/srd/**/*.md,docs/entrega/**/*.md,docs/discovery/**/*.md
+alwaysApply: false
+---
+
+# Product Engineer — roteamento
+
+Trabalho de **PRD**, **SRD**, **proposta** ou discovery etiquetado segue a skill `product-engineer`.
+
+1. Ler `.cursor/skills/product-engineer/SKILL.md` e seguir o fluxo de lá.
+2. PRD = comportamento observável (`templates/prd.md`). SRD = capacidades, entidades, invariantes e portas (`templates/srd.md`). Sem stack.
+3. A proposta de 6 seções deriva dos contratos; não o inverso.
+4. Papel e adaptação Morada: `reference-papel.md`.
+5. UI de telas → skill `ui-operacao`. Flash/calendário/planilha/tempo → skill `otimizacao-operacional`.
+
+Ao **criar** esses arquivos, aplicar a mesma skill — não esperar o glob.

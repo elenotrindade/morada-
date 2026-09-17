@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comprovante</title>
+  <style>
+    :root {
+      --ink: #1c2128;
+      --muted: #5f6772;
+      --line: #c8ced6;
+      --ok: #1f6b3a;
+      --paper: #fff;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #eef0f3; overflow: hidden; }
+    body {
+      font: 13px/1.4 ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      padding: 10px 12px;
+    }
+    .slip {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 3px solid var(--ok);
+    }
+    .mark {
+      width: 36px; height: 36px;
+      background: var(--ok);
+      color: #fff;
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: .04em;
+      display: grid;
+      place-items: center;
+    }
+    .head h1 { margin: 0; font-size: 15px; font-weight: 700; }
+    .head p { margin: 0; color: var(--muted); font-size: 12px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .cell {
+      padding: 8px 12px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .cell:nth-child(2n) { border-right: 0; }
+    .cell.span { grid-column: 1 / -1; border-right: 0; }
+    .k {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .v { font-weight: 650; word-break: break-word; }
+    .v.path { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; font-weight: 500; }
+    .stamp {
+      margin: 14px 12px;
+      border: 2px solid var(--ok);
+      color: var(--ok);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    .rodape {
+      padding: 0 12px 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <article class="slip">
+    <header class="head">
+      <div class="mark" aria-hidden="true">OK</div>
+      <div>
+        <h1>Comprovante de pagamento</h1>
+        <p id="tipo">Mock · Morada</p>
+      </div>
+    </header>
+    <div class="grid">
+      <div class="cell"><span class="k">Nome</span><span class="v" id="nome">—</span></div>
+      <div class="cell"><span class="k">Data</span><span class="v" id="data">—</span></div>
+      <div class="cell"><span class="k">Quem anexou</span><span class="v" id="ator">—</span></div>
+      <div class="cell"><span class="k">Bucket</span><span class="v" id="bucket">—</span></div>
+      <div class="cell span"><span class="k">Caminho</span><span class="v path" id="caminho">—</span></div>
+    </div>
+    <div class="stamp">Pago · conferência no Banco</div>
+    <p class="rodape">Mock do protótipo — não é comprovante bancário.</p>
+  </article>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v || "—"; };
+    set("nome", q.get("nome"));
+    set("data", q.get("data"));
+    set("ator", q.get("ator"));
+    set("bucket", q.get("bucket"));
+    set("caminho", q.get("caminho"));
+    const nome = q.get("nome") || "";
+    const tipoEl = document.getElementById("tipo");
+    if (tipoEl) {
+      const img = /\.(png|jpe?g|webp|gif)$/i.test(nome);
+      tipoEl.textContent = img ? "Imagem · Morada" : "PDF · Morada";
+    }
+  </script>
+</body>
+</html>

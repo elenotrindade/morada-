@@ -1,0 +1,13 @@
+---
+description: Roteia Flash, Omie, calendário e planilha de dias úteis para a skill otimizacao-operacional.
+globs: docs/integracoes/**/*.md
+alwaysApply: false
+---
+
+# Otimização operacional — roteamento
+
+Trabalho de **integração**, Flash, Omie, calendário, planilha ou dias úteis segue a skill `otimizacao-operacional`.
+
+Ler `.cursor/skills/otimizacao-operacional/SKILL.md`.
+
+Recorte 1 = calendário + motor + Flash. Omie não é recorte 1. Não esconder ônibus. PRD/SRD → `product-engineer`. Telas → `ui-operacao`.

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boleto · Flash</title>
+  <style>
+    :root {
+      --ink: #1c2128;
+      --muted: #5f6772;
+      --line: #c8ced6;
+      --flash: #e85d04;
+      --paper: #fff;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #eef0f3; overflow: hidden; }
+    body {
+      font: 13px/1.4 ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      padding: 10px 12px;
+    }
+    .slip {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 3px solid var(--flash);
+    }
+    .mark {
+      width: 36px; height: 36px;
+      background: var(--flash);
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: .04em;
+      display: grid;
+      place-items: center;
+    }
+    .head h1 { margin: 0; font-size: 15px; font-weight: 700; }
+    .head p { margin: 0; color: var(--muted); font-size: 12px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.4fr .9fr;
+      border-bottom: 1px solid var(--line);
+    }
+    .cell {
+      padding: 8px 12px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .cell:nth-child(2n) { border-right: 0; }
+    .cell.span { grid-column: 1 / -1; border-right: 0; }
+    .k {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .v { font-weight: 650; }
+    .v.valor { font-size: 18px; font-variant-numeric: tabular-nums; }
+    .v.taxa { font-variant-numeric: tabular-nums; }
+    .v.taxa b { font-weight: 800; }
+    .linha {
+      padding: 10px 12px 8px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-align: center;
+    }
+    .barra {
+      height: 44px;
+      margin: 0 12px 12px;
+      background: repeating-linear-gradient(
+        90deg,
+        #111 0 2px,
+        transparent 2px 4px,
+        #111 4px 5px,
+        transparent 5px 8px,
+        #111 8px 11px,
+        transparent 11px 13px
+      );
+    }
+    .rodape {
+      padding: 0 12px 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <article class="slip">
+    <header class="head">
+      <div class="mark" aria-hidden="true">FL</div>
+      <div>
+        <h1>Boleto de benefícios</h1>
+        <p>Flash · Morada</p>
+      </div>
+    </header>
+    <div class="grid">
+      <div class="cell"><span class="k">Pagador</span><span class="v">Morada</span></div>
+      <div class="cell"><span class="k">Vencimento</span><span class="v" id="vencimento">—</span></div>
+      <div class="cell"><span class="k">Competência</span><span class="v" id="competencia">—</span></div>
+      <div class="cell"><span class="k">Valor</span><span class="v valor" id="valor">—</span></div>
+      <div class="cell"><span class="k">Parcial</span><span class="v" id="parcial">—</span></div>
+      <div class="cell"><span class="k">Taxa do provedor</span><span class="v taxa" id="taxa">—</span></div>
+      <div class="cell"><span class="k">Beneficiários</span><span class="v" id="pessoas">—</span></div>
+      <div class="cell"><span class="k">Documento</span><span class="v" id="documento">—</span></div>
+      <div class="cell span"><span class="k">Data do documento</span><span class="v" id="emissao">—</span></div>
+    </div>
+    <div class="linha" id="linha">23790.00000 00000.000000 00000.000000 0 00000000000000</div>
+    <div class="barra" aria-hidden="true"></div>
+    <p class="rodape">Mock do protótipo — conferência na etapa Boleto. Não é boleto bancário.</p>
+  </article>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v || "—"; };
+    const n = q.get("pessoas");
+    const nNum = Number(n);
+    const pessoasTxt = n == null || n === ""
+      ? "—"
+      : (nNum === 1 ? "1 pessoa" : `${n} pessoas`);
+    set("valor", q.get("valor"));
+    set("competencia", q.get("competencia"));
+    set("parcial", q.get("parcial"));
+    set("pessoas", pessoasTxt);
+    set("vencimento", q.get("vencimento"));
+    set("documento", q.get("documento"));
+    set("emissao", q.get("emissao"));
+    const flash = q.get("flash");
+    const omie = q.get("omie");
+    const visivel = q.get("visivel");
+    const taxaEl = document.getElementById("taxa");
+    if (taxaEl) {
+      if (flash && omie && visivel) {
+        taxaEl.replaceChildren(
+          document.createTextNode("(" + flash + " + " + omie + ") "),
+          Object.assign(document.createElement("b"), { textContent: visivel })
+        );
+      } else {
+        taxaEl.textContent = visivel || "—";
+      }
+    }
+    const linha = q.get("linha");
+    if (linha) document.getElementById("linha").textContent = linha;
+  </script>
+</body>
+</html>
